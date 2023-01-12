@@ -13,7 +13,13 @@ export default {
 </script>
 
 <template>
+  <h1>Todo List</h1>
 
+  <div id="tasks_box">
+
+  </div>
+
+  <Add />
 </template>
 
 <style lang="scss">
