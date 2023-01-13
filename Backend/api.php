@@ -4,15 +4,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header("Content-Type: application/json");
 
-$value = $_GET["task"];
-
-$tasksObj = [
-    [
-        "task" => $value,
-        "completed" => false
-    ],
-];
-
-echo json_encode($tasksObj);
+$jsonTasksList = file_get_contents("tasks.json");
+echo $jsonTasksList;
 
 ?>

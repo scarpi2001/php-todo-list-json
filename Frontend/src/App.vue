@@ -16,7 +16,7 @@ export default {
   <h1>Todo List</h1>
 
   <div id="tasks_box">
-
+    <Tasks />
   </div>
 
   <Add />
