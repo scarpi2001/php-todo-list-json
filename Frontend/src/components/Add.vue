@@ -11,20 +11,15 @@ export default {
     },
     methods: {
         getAllData() {
-
-            const apiCreateURL = "http://localhost/php-todo-list-json/Backend/api.php";
-
-            axios.get(apiCreateURL)
+            axios.get(this.store.apiURL + "api.php")
                 .then(res => {
                     const data = res.data
                     this.store.tasksList = data;
                 });
         },
 
-        formSubmit(e) {
+        createTask(e) {
             e.preventDefault();
-
-            const apiReadURL = "http://localhost/php-todo-list-json/Backend/api-create-task.php";
 
             const params = {
                 params: {
@@ -32,12 +27,15 @@ export default {
                 }
             };
 
-            axios.get(apiReadURL, params)
+            axios.get(this.store.apiURL + "api-create-task.php", params)
                 .then(() => {
                     this.getAllData();
                 });
 
-        }
+            this.store.newTask = "";
+
+        },
+
     },
     mounted() {
         this.getAllData();
@@ -47,12 +45,17 @@ export default {
 </script>
 
 <template>
-    <form @submit="formSubmit" id="add_form">
+
+    <!-- add task -->
+    <form @submit="createTask" id="add_form">
         <input type="text" name="newTask" id="newTask" v-model="store.newTask">
         <input type="submit" value="ADD">
     </form>
+
 </template>
 
 <style lang="scss" scoped>
-
+.remove {
+    cursor: pointer;
+}
 </style>

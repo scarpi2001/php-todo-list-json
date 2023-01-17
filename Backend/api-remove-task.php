@@ -4,16 +4,16 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header("Content-Type: application/json");
 
-$newTask = $_GET["newTask"];
+$removedTask = $_GET["removedTask"];
 
 $jsonTasksList = file_get_contents("tasks.json");
 $tasksList = json_decode($jsonTasksList);
 
-$tasksList[] = [
-    "text" => $newTask,
-    "completed" => false
-];
+array_splice($tasksList, $removedTask, 1);
 
 $jsonTasksList = json_encode($tasksList);
 file_put_contents("tasks.json", $jsonTasksList);
+
+echo true;
+
 ?>
